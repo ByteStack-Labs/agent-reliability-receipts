@@ -1,0 +1,6 @@
+{
+  "split": "eval",
+  "total": 400,
+  "exact_match_rate": 1.0,
+  "mean_field_accuracy": 1.0
+}

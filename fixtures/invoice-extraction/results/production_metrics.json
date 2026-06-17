@@ -1,0 +1,14 @@
+{
+  "split": "production",
+  "total": 400,
+  "exact_match_rate": 0.8625,
+  "mean_field_accuracy": 0.9464,
+  "exact_match_by_shift_type": {
+    "compact": 0.0,
+    "delimiter": 1.0,
+    "mixed": 0.0,
+    "reorder": 0.0,
+    "verbose": 0.0,
+    "whitespace": 1.0
+  }
+}
