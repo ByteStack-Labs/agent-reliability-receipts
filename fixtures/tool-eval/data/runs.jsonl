@@ -1,0 +1,8 @@
+{"id": "t1", "op": "add", "a": 8231.5, "b": 3383.22, "model_answer": "$11,614.72", "ground_truth": "11614.72"}
+{"id": "t2", "op": "add", "a": 540.0, "b": 260.0, "model_answer": "800.00", "ground_truth": "800.00"}
+{"id": "t3", "op": "mul", "a": 12, "b": 48.0, "model_answer": "576.00", "ground_truth": "576.00"}
+{"id": "t4", "op": "add", "a": 1200.0, "b": 350.5, "model_answer": "1550.50", "ground_truth": "1550.50"}
+{"id": "t5", "op": "mul", "a": 7, "b": 90.0, "model_answer": "630.00", "ground_truth": "630.00"}
+{"id": "t6", "op": "add", "a": 99.99, "b": 0.01, "model_answer": "100.00", "ground_truth": "100.00"}
+{"id": "t7", "op": "add", "a": 612.0, "b": 631.0, "model_answer": "1234.00", "ground_truth": "1234.00"}
+{"id": "t8", "op": "mul", "a": 100, "b": 7.0, "model_answer": "690.00", "ground_truth": "700.00"}
