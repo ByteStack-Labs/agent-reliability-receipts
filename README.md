@@ -61,6 +61,7 @@ the method is auditable in the open even when the engagement behind it is not.
 | Skill                | Fixture                       | Receipt       |
 | -------------------- | ----------------------------- | ------------- |
 | **production-autopsy** | `invoice-extraction`          | shipped       |
+| **tool-eval**          | `tool-eval`                   | shipped       |
 | **calibration-guard**  | a confidence-emitting fixture | landing next  |
 | **trajectory-eval**    | a multi-step agent fixture    | landing next  |
 

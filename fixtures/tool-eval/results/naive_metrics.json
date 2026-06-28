@@ -1,0 +1,5 @@
+{
+  "scorer": "naive_exact_match",
+  "total": 8,
+  "accuracy": 0.75
+}
