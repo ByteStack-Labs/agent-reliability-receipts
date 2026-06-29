@@ -58,15 +58,15 @@ the method is auditable in the open even when the engagement behind it is not.
 
 ## What is here, and what is landing
 
-| Skill                | Fixture                       | Receipt       |
-| -------------------- | ----------------------------- | ------------- |
-| **production-autopsy** | `invoice-extraction`          | shipped       |
-| **tool-eval**          | `tool-eval`                   | shipped       |
-| **calibration-guard**  | a confidence-emitting fixture | landing next  |
-| **trajectory-eval**    | a multi-step agent fixture    | landing next  |
+| Skill                | Value                                                 | Fixture                    | Receipt      |
+| -------------------- | ----------------------------------------------------- | -------------------------- | ------------ |
+| **production-autopsy** | Find the silent production failure your eval cleared. | `invoice-extraction`       | shipped      |
+| **tool-eval**          | Tell a formatting miss from a real tool failure.      | `tool-eval`                | shipped      |
+| **calibration-guard**  | Catch confident-but-wrong before it ships.            | `calibration-guard`        | shipped      |
+| **trajectory-eval**    | Locate where a passing agent silently breaks.         | a multi-step agent fixture | landing next |
 
-One airtight receipt now, the other two on the way. Until a skill's receipt is here,
-its results are not yet reproducible and should not be cited as proven.
+Three receipts here now, with trajectory-eval landing next. Until a skill's receipt is
+here, its results are not yet reproducible and should not be cited as proven.
 
 ## License
 
