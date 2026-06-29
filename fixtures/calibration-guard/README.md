@@ -1,17 +1,19 @@
 # Fixture: calibration-guard
 
-A batch of confident classifier predictions, built to be diagnosed. This is a teaching
+Two batches of predictions from the same classifier, built to be diagnosed: an evaluation
+batch and a production batch drawn from a shifted input distribution. This is a teaching
 fixture, not a real model, and it is labeled as one on purpose.
 
 ## What it is
 
 `naive_read.py` is the system under test: the naive reliability read that summarizes a
-batch of predictions as overall accuracy plus mean confidence, the way a dashboard does.
-That summary is what lets miscalibration ship, healthy accuracy next to high confidence
-looks fine. `data/predictions.jsonl` is a committed batch of 500 binary-classifier
-predictions, each with a stated confidence; `results/naive_metrics.json` is what the naive
-read reports on it. The batch is built with one real flaw: most predictions are roughly
-calibrated, but a concentrated pocket is highly confident and usually wrong.
+batch as overall accuracy plus mean confidence, the way a dashboard does. Read per split,
+it makes a model that has come apart under shift still look healthy. `data/eval.jsonl` and
+`data/production.jsonl` are the two committed batches; each prediction carries two signals,
+the model's own stated `confidence` and an independent `verifier_score` from a cheap
+secondary check. The two are kept separate and never averaged. Every production record also
+records whether it came from the shifted pocket. `results/` holds the naive summary of each
+split.
 
 ## Reproduce every number
 
@@ -20,16 +22,18 @@ cd fixtures/calibration-guard
 python3 generate.py
 ```
 
-Standard library only. No model, no GPU, no network. The random parts are seeded, so the
-batch regenerates identically every run. The script writes the predictions to `data/` and
-the naive summary to `results/`.
+Standard library only. No model, no GPU, no network. The random parts are seeded, so both
+batches regenerate identically every run. The script writes `eval.jsonl` and
+`production.jsonl` to `data/` and a naive summary per split to `results/`.
 
 ## What the numbers show
 
-The naive read is 0.686 accuracy at 0.825 mean confidence, unremarkable. Bin the
-predictions by confidence and the picture changes: the model is well calibrated from 0.6
-to 0.9, then in its top bin, where it places 187 of 500 predictions, it states ~0.94
-confidence and is right ~0.55 of the time. Expected calibration error is 0.161, and 84
-predictions made at 0.90 confidence or higher are wrong. The model is most confident
-exactly where it is least correct. The full re-derivation, and the proof that it fails
-closed, is in `receipts/calibration-guard/`.
+On the evaluation batch the model is well calibrated: ECE 0.0245, and stated confidence is
+higher on the answers it gets right than on the ones it gets wrong. On the production
+batch, where 40% of inputs come from a pocket the model cannot perceive, accuracy falls to
+0.584 while mean confidence rises to 0.830, ECE jumps to 0.2572, and the confidence
+separation inverts: wrong answers come back more confident than right ones. A confidence
+threshold tuned on eval then catches only 28% of production errors, down from 77%. The
+independent verifier, disagreeing with confidence by at least 0.25, still catches 64% and
+never fires on the eval batch. The full re-derivation, and the proof that it fails closed,
+is in `receipts/calibration-guard/`.
