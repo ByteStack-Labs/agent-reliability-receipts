@@ -1,0 +1,6 @@
+{
+  "accuracy": 0.584,
+  "mean_confidence": 0.8297,
+  "split": "production",
+  "shifted_fraction": 0.394
+}
